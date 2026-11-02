@@ -184,7 +184,7 @@ int main() {
         [rebuild]() { if (*rebuild) (*rebuild)(); });
 
     auto installed_header = std::make_shared<TextWidget>("INSTALLED APPS", 13.0f);
-    installed_header->setColor({0.55f, 0.55f, 0.6f, 1.0f});
+    installed_header->setColor({0.45f, 0.45f, 0.50f, 1.0f});   // reads on light and dark windows
     installed_header->setPadding(4);
 
     auto header_row = std::make_shared<FlexRow>(
