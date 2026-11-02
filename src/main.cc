@@ -364,7 +364,7 @@ int main() {
                     if (lp.total_ == 0) {
                         auto empty = std::make_shared<TextWidget>(
                             "No trusted keys. Add keys with 'xpkg trust <pubkey>'.", 12.0f);
-                        empty->setColor({0.6f, 0.6f, 0.65f, 1.0f});
+                        empty->setColor({0.47f, 0.47f, 0.52f, 1.0f});   // reads on light and dark cards
                         keys_col->addChild(empty);
                         signing_status->setText("0 trusted keys");
                         return;
