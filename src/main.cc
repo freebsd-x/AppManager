@@ -62,7 +62,8 @@ int main() {
         std::vector<std::shared_ptr<Widget>>{
             std::make_shared<TextWidget>("Loading…", 14.0f)});
 
-    auto path_input = std::make_shared<TextInputWidget>("/path/to/App.xpkg");
+    auto path_input = std::make_shared<TextInputWidget>("");
+    path_input->setPlaceholder("/path/to/App.xpkg");
 
     // ── Rebuild the installed-apps column (called after list_apps_all) ────
     // Use shared_ptr-to-function so the lambda can capture itself.
@@ -140,7 +141,7 @@ int main() {
             auto* xbus = XApplication::getBus();
             if (!xbus) return;
             std::string path = path_input->text();
-            if (path.empty() || path == "/path/to/App.xpkg") {
+            if (path.empty()) {
                 status_label->setText("Enter a .xpkg or .xapp path first.");
                 return;
             }
@@ -275,7 +276,8 @@ int main() {
     };
 
     // Search remote
-    auto remote_search_input = std::make_shared<TextInputWidget>("Search packages...");
+    auto remote_search_input = std::make_shared<TextInputWidget>("");
+    remote_search_input->setPlaceholder("Search packages...");
     remote_search_input->setOnChanged([remote_list_col, discover_status](const std::string& q) {
         auto* xbus = XApplication::getBus();
         if (!xbus || q.size() < 2) return;
@@ -419,14 +421,15 @@ int main() {
     };
 
     // Import key by path input
-    auto key_path_input = std::make_shared<TextInputWidget>("/path/to/key.pub");
+    auto key_path_input = std::make_shared<TextInputWidget>("");
+    key_path_input->setPlaceholder("/path/to/key.pub");
     auto import_key_btn = std::make_shared<ButtonWidget>(
         std::make_shared<TextWidget>("Import Key", 13.0f),
         [key_path_input, signing_status, load_keys_page]() {
             auto* xbus = XApplication::getBus();
             if (!xbus) return;
             std::string path = key_path_input->text();
-            if (path.empty() || path == "/path/to/key.pub") {
+            if (path.empty()) {
                 signing_status->setText("Enter a .pub or .asc key file path first.");
                 return;
             }
